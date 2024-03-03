@@ -16,7 +16,7 @@
     </br>
         <form class="form">
             <label2 for="guessField" id="guess">Guess a number</label>
-            <input type="text" id="guessField" class="guessField">
+            <input type="text" id="guessField" class="guessField" placeholder="Enter Here">
             <input type="submit" id="subt" value="Submit guess" class="guessSubmit">
         </form>
 
@@ -65,7 +65,7 @@
 
         else{
             prevGuess.push(guess);
-            if(numGuess === 11){
+            if(numGuess === 10){
                 displayGuess(guess);
                 displayMessage(`GameOver. Random Number Was ${randomNumber}`);
                 endGame();
@@ -89,20 +89,20 @@
 
   function displayGuess(guess){
         userInput.value = ''
-        guessSlot.innerHTML += `${guess}, `;
+        guessSlot.innerHTML += `${guess},`;
         numGuess++;
-        remainingSlot.innerHTML = `${11 - numGuess}, `;
+        remainingSlot.innerHTML = `${11 - numGuess},`;
     }
 
   function displayMessage(message){
-        lowOrHigh.innerHTML = `<h2>${message}</h2>`
+        lowOrHigh.innerHTML = `<h3>${message}</h3>`
     }
 
   function endGame(){
         userInput.value = '';
         userInput.setAttribute('disabled', '')
         p.classList.add('button');
-        p.innerHTML = `<h2 id="newGame">Start New Game</h2>`;
+        p.innerHTML = `<h3 id="newGame">Start New Game</h3>`;
         result.appendChild(p);
         playGame = false;
         startGame();
