@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Number Guessing Game</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body style="background-color:#212121; color:#fff;">
     
@@ -54,7 +54,7 @@
         })
     }
 
-  function validateGuess(){
+  function validateGuess(guess){
         if(isNaN(guess)){
             alert('Please Enter Valid Number');
         }else if(guess < 1){
@@ -65,7 +65,7 @@
             prevGuess.push(guess)
             if(numGuess === 11){
                 displayGuess(guess)
-                displayMessage(`GameOver. Random Number Was ${random}`)
+                displayMessage(`GameOver. Random Number Was ${randomNumber}`)
                 endGame()
             }else{
                 displayGuess(guess)
@@ -74,34 +74,34 @@
         }
     }
 
-  function checkGuess(){
-        if(guess === random){
+  function checkGuess(guess){
+        if(guess === randomNumber){
             displayMessage(`You Guessed It Right`)
             endGame()
-        }else if(guess < random){
+        }else if(guess < randomNumber){
             displayMessage(`Number Is Too Low`)
-        }else if(guess > random){
+        }else if(guess > randomNumber){
             displayMessage(`Number Is Too High`)
         }
 
     }
 
-  function displayGuess(){
+  function displayGuess(guess){
         userInput.value = ''
         guessSlot.innerHTML += `${guess}, `;
         numGuess++;
         remainingSlot.innerHTML = `${11 - numGuess}, `;
     }
 
-  function displayMessage(){
+  function displayMessage(message){
         lowOrHigh.innerHTML = `<h2>${message}</h2>`
     }
 
   function endGame(){
         userInput.value = '';
         userInput.setAttribute('disabled', '')
-        p.classList.add('Button');
-        p.innerHTML = `<h2 id='newGame'>Start New Game</h2>`;
+        p.classList.add('button');
+        p.innerHTML = `<h2 id="newGame">Start New Game</h2>`;
         result.appendChild(p);
         playGame = false;
         startGame();
@@ -109,7 +109,7 @@
 
   function startGame(){
         const newGameBtn = document.querySelector('#newGame');
-        newGameBtn.addEventListener('click', function(e){
+        newGameBtn.addEventListener('click', function(e) {
         randomNumber = parseInt(Math.random() * 100+1);
         prevGuess = [];
         numGuess = 1;
@@ -117,9 +117,8 @@
         remainingSlot.innerHTML = `${11 - numGuess}, `;
         userInput.removeAttribute('disabled');
         result.removeChild(p);
-        
         playGame = true;
-        })
+        });
     }
 
 </script>
