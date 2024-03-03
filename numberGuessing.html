@@ -29,6 +29,7 @@
     </div>
 </body>
 <script>
+    
   let randomNumber = parseInt(Math.random() * 100+1);
 
   const submit = document.querySelector('#subt');
@@ -46,12 +47,12 @@
   let playGame = true;
 
   if(playGame){
-        submit.addEventListener('click', function(e){
-            e.defaultPrevented();
-            const guess = parseInt(userInput.value)
-            console.log(guess)
+        submit.addEventListener('click', function (e) {
+            e.preventDefault();
+            const guess = parseInt(userInput.value);
+            //console.log(guess)
             validateGuess(guess);
-        })
+        });
     }
 
   function validateGuess(guess){
@@ -61,29 +62,30 @@
             alert('Please Enter Number Greater Then 1');
         }else if(guess > 100){
             alert('Please Enter Number Lesser Then 100');
-        }else{
-            prevGuess.push(guess)
+        }
+
+        else{
+            prevGuess.push(guess);
             if(numGuess === 11){
-                displayGuess(guess)
-                displayMessage(`GameOver. Random Number Was ${randomNumber}`)
-                endGame()
+                displayGuess(guess);
+                displayMessage(`GameOver. Random Number Was ${randomNumber}`);
+                endGame();
             }else{
-                displayGuess(guess)
-                checkGuess(guess)
+                displayGuess(guess);
+                checkGuess(guess);
             }
         }
     }
 
   function checkGuess(guess){
         if(guess === randomNumber){
-            displayMessage(`You Guessed It Right`)
-            endGame()
+            displayMessage(`You Guessed It Right`);
+            endGame();
         }else if(guess < randomNumber){
-            displayMessage(`Number Is Too Low`)
+            displayMessage(`Number Is Too Low`);
         }else if(guess > randomNumber){
-            displayMessage(`Number Is Too High`)
+            displayMessage(`Number Is Too High`);
         }
-
     }
 
   function displayGuess(guess){
